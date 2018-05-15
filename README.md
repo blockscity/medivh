@@ -32,17 +32,17 @@
       }
     };
     ```
-需要指定访问的ethereum 节点的rpc 地址，可以启动一个测试的以太坊节点
+    需要指定访问的ethereum 节点的rpc 地址，可以启动一个测试的以太坊节点
 
     ```bash
     docker run --rm -it -v $(pwd)/ethereum/data:/ethereum/data:rw \
            -v $(pwd)/ethereum/ethash:/ethereum/ethash:rw \
            tzion/peer geth --networkid=331788 --datadir=/ethereum/data --ethash.dagdir=/ethereum/ethash account new
-    # we have the address 0x5d3821e5a91e6270f721da33cfe8e0fb8017827d
+    # we have the address 0xadf7ad4985fa697c07802a94cdb001fda7eb3efe
     docker run -d --name=truffle-server -v $(pwd)/ethereum/data:/ethereum/data:rw \
                  -v $(pwd)/ethereum/ethash:/ethereum/ethash:rw \-p 8545:8545/tcp -p 8545:8545/udp \
                  -p 30303:30303/tcp -p 30303:30303/udp \
-                 --cpus=0.2 \
+                 --cpus=0.5 \
                  tzion/peer geth --networkid=331788 \
                  --datadir=/ethereum/data \
                  --ethash.dagdir=/ethereum/ethash \
@@ -52,7 +52,8 @@
 5. 解锁account
 
     ```bash
-docker exec -it truffle-server geth --datadir=/ethereum/data attach --exec 'personal.unlockAccount("0x5d3821e5a91e6270f721da33cfe8e0fb8017827d")'
+    docker exec -it truffle-server geth --datadir=/ethereum/data attach --exec 'personal.unlockAccount("0xadf7ad4985fa697c07802a94cdb001fda7eb3efe")'
+    # 密码为password
     ```
 6. 运行迁移脚本
     
