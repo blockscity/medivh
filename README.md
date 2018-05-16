@@ -52,7 +52,7 @@
 5. 解锁account
 
     ```bash
-    docker exec -it truffle-server geth --datadir=/ethereum/data attach --exec 'personal.unlockAccount("0xadf7ad4985fa697c07802a94cdb001fda7eb3efe")'
+    docker exec -it truffle-server geth --datadir=/ethereum/data attach --exec 'personal.unlockAccount("0xadf7ad4985fa697c07802a94cdb001fda7eb3efe", "password")'
     # 密码为password
     ```
 6. 运行迁移脚本
